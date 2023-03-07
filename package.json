@@ -4,7 +4,9 @@
   "description": "Completing of the first lab for node.js",
   "main": "index.js",
   "scripts": {
-    "test": "npx tsc index.ts"
+    "task1": "cd task1 && tsc index.ts && node index.js",
+    "task2": "cd task2 && tsc index.ts && node index.js",
+    "task3": "cd task3 && tsc index.ts && node index.js"
   },
   "repository": {
     "type": "git",
