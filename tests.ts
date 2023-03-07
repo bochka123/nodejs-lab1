@@ -10,10 +10,12 @@ describe('Task 2 tests', () => {
         expect(isNarcissistic(153)).to.equal(true, '153 is narcissistic');
         expect(isNarcissistic(1634)).to.equal(true, '1634 is narcissistic');
         expect(isNarcissistic(2000)).to.equal(false, '2000 is not narcissistic');
-        expect(isNarcissistic(-7)).to.equal(false, '-7 is not narcissistic');
-        expect(isNarcissistic(7.214)).to.equal(false, '7.214 is not narcissistic');
-        expect(isNarcissistic(-7.214)).to.equal(false, '-7.214 is not narcissistic');
     });
+    it('Wrong input tests', ()=>{
+        expect(isNarcissistic.bind(-7)).to.throw("Wrong input");
+        expect(isNarcissistic.bind(7.214)).to.throw("Wrong input");
+        expect(isNarcissistic.bind(-7.214)).to.throw("Wrong input");
+    })
     const nums = [8208, 9474, 54748, 92727, 93084, 548834, 1741725, 4210818, 9800817, 9926315, 24678050, 24678051];
 
     nums.forEach((num) => {
