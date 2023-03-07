@@ -2,6 +2,7 @@ import "mocha";
 import {assert, expect} from 'chai';
 import {isNarcissistic} from "./task2/task2";
 import {sumOfIntervals} from "./task1/task1";
+import {findUniq} from "./task3/task3";
 
 describe("Task 1", function() {
     it("basic tests", function() {
@@ -90,5 +91,75 @@ describe('Task 2 tests', () => {
     }
     function solution(value: number): boolean {
         return value.toString().split('').reduce((acc, el, _, arr) => acc + Number(el) ** arr.length, 0) === value;
+    }
+});
+
+describe('Task 3', function(){
+    it('should handle sample cases', () => {
+        assert.strictEqual(findUniq([ 1, 1, 1, 2, 1, 1 ]), 2);
+        assert.strictEqual(findUniq([ 0, 0, 0.55, 0, 0 ]), 0.55);
+    });
+
+    it('should handle basic cases', () => {
+        // Basic tests (shuffled)
+        assert.strictEqual(findUniq([ 4, 4, 4, 3, 4, 4, 4, 4 ]),3);
+        assert.strictEqual(findUniq([ 5, 5, 5, 5, 4, 5, 5, 5 ]),4);
+        assert.strictEqual(findUniq([ 6, 6, 6, 6, 6, 5, 6, 6 ]),5);
+        assert.strictEqual(findUniq([ 7, 7, 7, 7, 7, 7, 6, 7 ]),6);
+        // The last item
+        assert.strictEqual(findUniq([ 8, 8, 8, 8, 8, 8, 8, 7 ]),7);
+        assert.strictEqual(findUniq([ 3, 3, 2, 3, 3, 3, 3, 3 ]),2);
+        assert.strictEqual(findUniq([ 2, 1, 2, 2, 2, 2, 2, 2 ]),1);
+        // The first item
+        assert.strictEqual(findUniq([ 0, 1, 1, 1, 1, 1, 1, 1 ]),0);
+    });
+
+    it('should handle edge cases', () => {
+        // Very big number
+        assert.strictEqual(
+            findUniq(generateTestArr(Math.pow(2, 40), Math.pow(2, 50), 100)) , Math.pow(2, 40)
+        );
+
+        // Negative number
+        assert.strictEqual(
+            findUniq(generateTestArr(-1, 1, 1000)) , -1
+        );
+
+        // Float number
+        assert.strictEqual(
+            findUniq(generateTestArr(0.0000001, 0.0010001, 1000)) , 0.0000001
+        );
+
+        // Infitiy and -Infiity
+        assert.strictEqual(
+            findUniq(generateTestArr(-Infinity, Infinity, 1000)) , -Infinity
+        );
+    });
+
+    it('should handle huge array', () => {
+        assert.strictEqual(
+            findUniq(generateTestArr(42, 24, 10000000)),42
+        );
+    });
+
+    it('should handle random case', () => {
+        let a = Math.random();
+        let b = Math.random();
+        assert.strictEqual(
+            findUniq(generateTestArr(a, b, 1000)) , a
+        );
+    });
+    function generateTestArr(answer: number, mass: number, length: number): Array<number> {
+        let arr = [];
+        // Generate random integer in [0, length)
+        let answerIndex = Math.floor(Math.random() * length);
+
+        // Fill the array with mass and answer
+        for (let i = 0; i < length; i++) {
+            // Answer will be on answerIndex
+            arr.push(i === answerIndex ? answer : mass);
+        }
+
+        return arr;
     }
 });
