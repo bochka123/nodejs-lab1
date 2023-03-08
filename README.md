@@ -55,7 +55,7 @@ It’s guaranteed that array contains at least 3 numbers.
 <!-- -->
 
 1. Різниця  між JavaScript у браузері та Node.js полягає в тому, що Node.js використовує середовище виконання V8, яке є більш потужним, ніж те, що використовується в браузерах. Крім того, Node.js дозволяє виконувати код на стороні сервера, що дозволяє забезпечувати більш високу продуктивність, безпеку та масштабованість.
-2. string, number, boolean, object, null, undefined, bigInt, symbol.
+2. string, number, boolean, object, null, undefined, bigInt, symbol, function.
 3. У JavaScript, замикання (closure) відноситься до здатності функції звертатися та запам'ятовувати змінні з зовнішнього середовища, навіть після повернення зовнішньої функції.
 4. HTTP, HTTPS, FS, path, net, express, async.
 5. Використання ключового слова require - найпоширеніший спосіб імпортувати модуль. Також можна використовувати ключове слово import.
